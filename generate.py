@@ -15,8 +15,7 @@ import subprocess
 
 def main():
     # If not in the project root directory, go to it.
-    project_root = os.path.dirname(os.path.dirname(
-        os.path.realpath(__file__)))
+    project_root = os.path.dirname(os.path.realpath(__file__))
     os.chdir(project_root)
 
     sys.path.insert(0, os.path.realpath('package'))
@@ -61,13 +60,7 @@ def main():
     print('Renaming the package module: package ->', metadata.package)
     os.rename('package', '%s' % metadata.package)
 
-    git_revision = subprocess.check_output(
-        ['git', 'rev-parse', 'HEAD']).rstrip()
-    print('Dropping PPT version cookie (revision {0})...'.format(git_revision))
-    # Append the commit hash of the current revision to the file.
-    with open('.ppt-version', 'a') as ppt_version_cookie_file:
-        print(git_revision, file=ppt_version_cookie_file)
-
+    os.remove('generate.py')
 
 if __name__ == '__main__':
     main()

@@ -277,7 +277,7 @@ setup_dict = dict(
     #    'console_scripts': [
     #        '$package = $package.main:entry_point'
     #    ],
-    }
+    #}
 )
 
 def main():
